@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Made With Love 💗</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  color:#75475f;
+  background:linear-gradient(135deg,#fff0f5,#fff8e8,#eeeaff);
+  text-align:center;
+  overflow-x:hidden
+}
+header{padding:35px 15px 15px}
+h1{font-size:clamp(2rem,7vw,3.5rem);margin:8px;color:#c94f83}
+h2{color:#bd5e91}
+p{line-height:1.8}
+section{padding:28px 16px;max-width:950px;margin:auto}
+.card{
+  background:#ffffffd9;border:2px solid #ffd0e2;
+  border-radius:25px;padding:24px;margin:18px auto;
+  box-shadow:0 8px 25px #d98eae20
+}
+.bear{font-size:95px;animation:bounce 2s infinite}
+@keyframes bounce{50%{transform:translateY(-10px)}}
+button{
+  border:0;border-radius:30px;padding:13px 23px;
+  background:#ed78a7;color:white;font-size:1rem;
+  cursor:pointer;box-shadow:0 4px 0 #c95585;
+  margin:7px;transition:.2s
+}
+button:hover{transform:translateY(-3px)}
+nav{display:flex;justify-content:center;flex-wrap:wrap;gap:5px}
+.gallery{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px
+}
+.memory{
+  min-height:135px;border-radius:18px;padding:15px;
+  display:flex;flex-direction:column;justify-content:center;
+  background:linear-gradient(145deg,#ffe0eb,#fff0c9);
+  overflow:hidden
+}
+.memory span{font-size:43px}
+.memory p{margin:5px;font-size:.9rem}
+#surprise{display:none;background:#fff0f6}
+#surprise.show{display:block;animation:appear .7s}
+@keyframes appear{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+.heart{
+  position:fixed;bottom:-30px;pointer-events:none;
+  animation:float 5s linear forwards;z-index:5
+}
+@keyframes float{to{transform:translateY(-110vh) rotate(30deg);opacity:0}}
+audio{width:min(100%,320px)}
+footer{padding:30px 10px;color:#b15b84}
+@media(max-width:520px){
+ .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .card{padding:18px}
+ section{padding:18px 12px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="bear">🧸💗</div>
+  <h1>To My Dearest Family</h1>
+  <p>A little website, made with a whole lot of love 🌷</p>
+  <nav>
+    <button onclick="go('home')">🏡 Home</button>
+    <button onclick="go('memories')">📸 Memories</button>
+    <button onclick="go('message')">💌 My Message</button>
+  </nav>
+</header>
+
+<section id="home">
+  <div class="card">
+    <div style="font-size:55px">🌈🌸🐻🌸🌈</div>
+    <h2>You Make Life Beautiful!</h2>
+    <p>
+      Life is made special by the people who fill it with
+      kindness, laughter and love. This little gift is for
+      the wonderful family who makes my world brighter.
+    </p>
+    <button onclick="go('memories')">Let's See Our Memories 💕</button>
+  </div>
+</section>
+
+<section id="memories">
+  <h2>Our Little Memory Garden 🌷</h2>
+  <p>Every little moment becomes a beautiful memory.</p>
+  <div class="gallery">
+    <div class="memory"><span>🏡</span><p>Our Happy Home</p></div>
+    <div class="memory"><span>🎂</span><p>Special Celebrations</p></div>
+    <div class="memory"><span>😂</span><p>Our Funny Moments</p></div>
+    <div class="memory"><span>🍵</span><p>Time Together</p></div>
+    <div class="memory"><span>🌅</span><p>Beautiful Days</p></div>
+    <div class="memory"><span>🫶</span><p>Forever Together</p></div>
+  </div>
+  <p><small>Tip: We can replace these cute icons with your real family photos next.</small></p>
+</section>
+
+<section id="message">
+  <div class="card">
+    <div style="font-size:55px">💌</div>
+    <h2>A Little Message From My Heart</h2>
+    <p>
+      No matter where life takes us, family will always
+      have a special place in my heart. Thank you for the
+      love, the support, the laughter and all the little
+      things that make life meaningful.
+    </p>
+    <p>I'm grateful for you, today and always. ❤️</p>
+    <button onclick="reveal()">Open Your Little Surprise 🎁</button>
+    <div id="surprise">
+      <div style="font-size:65px">🎁💖🧸</div>
+      <h2>You Are My Forever Gift!</h2>
+      <p>Sending you the biggest hug and all my love. 🌈</p>
+      <p>Made with love, just for you. 💗</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="card">
+    <h2>🎵 A Little Music Corner</h2>
+    <p>Play your favourite song while exploring this gift.</p>
+    <input id="songFile" type="file" accept="audio/*">
+    <p><small>Choose an audio file from your device to play it here.</small></p>
+    <audio id="player" controls></audio>
+  </div>
+  <button onclick="hearts()">Send Some Love 💕</button>
+</section>
+
+<footer>Made with 💗, a sprinkle of magic ✨, and lots of love.</footer>
+
+<script>
+function go(id){
+  document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+function reveal(){
+  document.getElementById("surprise").classList.toggle("show");
+  hearts();
+}
+function hearts(){
+  const symbols=["💗","💕","💖","🌸","✨"];
+  for(let i=0;i<18;i++){
+    const el=document.createElement("span");
+    el.className="heart";
+    el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+    el.style.left=Math.random()*100+"vw";
+    el.style.animationDelay=Math.random()+"s";
+    el.style.fontSize=(18+Math.random()*20)+"px";
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),6000);
+  }
+}
+document.getElementById("songFile").addEventListener("change",function(){
+  if(this.files && this.files[0]){
+    const url=URL.createObjectURL(this.files[0]);
+    const player=document.getElementById("player");
+    player.src=url;
+    player.play().catch(()=>{});
+  }
+});
+</script>
+</body>
+</html>
